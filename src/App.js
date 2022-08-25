@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
+
+import Home from "./pages/HomePage";
+import Login from "./pages/auth/LoginPage";
+import SignUp from "./pages/auth/SignUpPage";
+import UserEdit from "./pages/auth/UserEditPage";
+import Cart from "./pages/product/Cart";
+import Curation from "./pages/product/CurationPage";
+import AllProduct from "./pages/product/AllProductPage";
+import Promotion from "./pages/product/PromotionPage";
+import PaymentCompleted from "./pages/product/PaymentCompletedPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/useredit" element={<UserEdit />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/curtaion" element={<Curation />} />
+          <Route path="/allproduct" element={<AllProduct />} />
+          <Route path="/promotion" element={<Promotion />} />
+          <Route path="/paymentcomplted" element={<PaymentCompleted />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
+// 1. HEADER, NAVBAR, 404page, ui-button, ui-gnb, homepage  //수연님
+// 2. login, singup, useredit, user-slice //현재님
+// 3. cart,payment-complete,  ui-card, cart-slice, //예진님
+// 4. all-product, search-product, all-product-slice, searched-product-slice //효근님
+// 5. curation page, promotion page, curation-slice, promotion-slice //화정님
