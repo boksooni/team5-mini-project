@@ -1,8 +1,5 @@
 const palette = {
-  yellow: "#F9F9C5",
-  green: "#D9F8C4",
-  orange: "#FAD9A1",
-  red: "#F37878",
+  purple: "#6B23E0",
 };
 
 const common = {
@@ -30,10 +27,17 @@ const fontSizes = {
   paragraph: "1rem",
 };
 
+const CardFontSizes = {
+  title: "1.3rem",
+  subtitle: "1.2rem",
+  paragraph: "1rem",
+};
+
 const theme = {
   palette,
   common,
   fontSizes,
+  CardFontSizes,
 };
 
 export default theme;
