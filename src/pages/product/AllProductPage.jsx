@@ -6,7 +6,7 @@ function AllProductPage() {
   return (
     <>
       {DUMMY_DATA.map((item) => (
-        <Card key={item.id} products={item} />
+        <Card key={item.id} product={item} />
       ))}
     </>
   );
