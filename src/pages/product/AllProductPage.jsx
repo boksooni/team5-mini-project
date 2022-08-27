@@ -1,7 +1,15 @@
 import React from "react";
+import Card from "../../components/UI/Card";
+import { DUMMY_DATA } from "../../utils/constants";
 
 function AllProductPage() {
-  return <div>AllProductPage</div>;
+  return (
+    <>
+      {DUMMY_DATA.map((item) => (
+        <Card key={item.id} products={item} />
+      ))}
+    </>
+  );
 }
 
 export default AllProductPage;
