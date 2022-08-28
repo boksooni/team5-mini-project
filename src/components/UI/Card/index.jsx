@@ -1,7 +1,17 @@
-import React from "react";
+import * as S from "./style";
+import { IoMdAddCircle } from "react-icons/io";
 
-function index() {
-  return <div>index</div>;
+function Card({ product }) {
+  return (
+    <S.CardContainer value={product.category}>
+      <S.CardCartBtn>
+        <IoMdAddCircle size="1.2rem" color="#6B23E0" />
+      </S.CardCartBtn>
+      <S.CardMainTitle>{product.title}</S.CardMainTitle>
+      <S.CardAmountText>{`${product.amount} 원`}</S.CardAmountText>
+      <S.CardInfoText>{product.institution}</S.CardInfoText>
+    </S.CardContainer>
+  );
 }
 
-export default index;
+export default Card;
