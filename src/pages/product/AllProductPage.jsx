@@ -1,21 +1,27 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+//components
 import Card from "../../components/UI/Card";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 import styled from "styled-components";
-import SearchedProduct from "./SearchedProduct";
+
+//store-function
+import { getAllProduct } from "../../store/slices/all-product-slice";
+import { getSearchedProduct } from "../../store/slices/searched-product-slice";
 
 import { DUMMY_DATA } from "../../utils/constants";
 
 import { GoSearch } from "react-icons/go";
 
+//styled-components
 const SearchForm = styled.form`
   ${(props) => props.theme.common.flexCenter}
   width: 20rem;
   margin: 1rem auto;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
 const SearchBar = styled.input`
@@ -33,14 +39,40 @@ const TitleArea = styled.div`
   right: 0;
   margin: 0 auto;
   width: 20rem;
+  font-size: 18px;
 `;
 
+//main
 function AllProductPage() {
+  const dispatch = useDispatch();
+
+  const [inputValue, setInputValue] = useState(null);
   const [isSearched, setIsSearched] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  const allProducts = useSelector((state) => {
+    return state.allProduct.data;
+  });
+
+  const searchedProducts = useSelector((state) => {
+    return state.searchedProduct.data;
+  });
+
+  useEffect(() => {
+    dispatch(getAllProduct());
+    setProducts(allProducts);
+  }, []);
 
   const searchHandler = (e) => {
     e.preventDefault();
     setIsSearched(true);
+    console.log(inputValue);
+    dispatch(getSearchedProduct(inputValue));
+    setProducts(searchedProducts);
+  };
+
+  const inputValueHandler = (e) => {
+    setInputValue(e.target.value);
   };
 
   return (
@@ -54,29 +86,22 @@ function AllProductPage() {
           type="text"
           name="searchValue"
           placeholder="원하시는 상품을 검색하세요"
+          onChange={inputValueHandler}
         />
         <button style={{ border: "none" }}>
           <GoSearch size="2rem" color="#6b23e0" cursor="pointer" />
         </button>
       </SearchForm>
 
-      {isSearched ? (
-        <div>
-          <TitleArea>
-            <h3>검색상품</h3>
-          </TitleArea>
-          <SearchedProduct />
-        </div>
-      ) : (
-        <div>
-          <TitleArea>
-            <h3>전체상품</h3>
-          </TitleArea>
-          {DUMMY_DATA.map((item) => (
-            <Card key={item.id} product={item} />
-          ))}
-        </div>
-      )}
+      <div>
+        <TitleArea>
+          {isSearched ? <h2>검색상품</h2> : <h2>전체상품</h2>}
+        </TitleArea>
+
+        {DUMMY_DATA.map((item) => (
+          <Card key={item.id} product={item} />
+        ))}
+      </div>
 
       <NavBar />
     </div>
