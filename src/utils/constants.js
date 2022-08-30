@@ -150,5 +150,4 @@ const DUMMY_DATA = [
     age: 20,
   },
 ];
-
 export { DUMMY_DATA };
