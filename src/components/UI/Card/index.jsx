@@ -7,9 +7,9 @@ function Card({ product }) {
       <S.CardCartBtn>
         <IoMdAddCircle size="1.2rem" color="#6B23E0" />
       </S.CardCartBtn>
-      <S.CardMainTitle>{product.title}</S.CardMainTitle>
+      <S.CardMainTitle>{product.job}</S.CardMainTitle>
       <S.CardAmountText>{`${product.amount} 원`}</S.CardAmountText>
-      <S.CardInfoText>{product.institution}</S.CardInfoText>
+      <S.CardInfoText>{product.interestRate}</S.CardInfoText>
     </S.CardContainer>
   );
 }
