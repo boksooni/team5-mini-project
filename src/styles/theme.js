@@ -1,5 +1,6 @@
 const palette = {
   purple: "#6B23E0",
+  darkGray: "#777",
 };
 
 const common = {
@@ -28,8 +29,8 @@ const fontSizes = {
 };
 
 const CardFontSizes = {
-  title: "1.3rem",
-  subtitle: "1.2rem",
+  title: ".9rem",
+  subtitle: ".7rem",
   paragraph: "1rem",
 };
 
