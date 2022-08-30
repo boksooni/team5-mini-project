@@ -182,13 +182,12 @@ function AllProductPage() {
           </SelectBox>
 
           <Button onClick={amountFilterChangeHandler}>
-            {amountFilter ? "금액 낮은순" : "금액 높은순"}
+            {amountFilter ? "금액 높은순" : "금액 낮은순"}
           </Button>
           <Button onClick={interestRateFilterChangeHandler}>
-            {interestRateFilter ? "금리 낮은순" : "금리 높은순"}
+            {interestRateFilter ? "금리 높은순" : "금리 낮은순"}
           </Button>
         </FilterArea>
-        if(product.length)
         {products.map((item) => (
           <Card key={item.id} product={item} />
         ))}
