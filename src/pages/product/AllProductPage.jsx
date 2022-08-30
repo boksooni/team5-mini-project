@@ -164,7 +164,6 @@ function AllProductPage() {
         <TitleArea>
           {isSearched ? <h2>검색상품</h2> : <h2>전체상품</h2>}
         </TitleArea>
-
         <FilterArea>
           <FaFilter size=".9rem" />
           <span style={{ margin: "2px" }}>필터</span>
@@ -186,13 +185,13 @@ function AllProductPage() {
             {amountFilter ? "금액 낮은순" : "금액 높은순"}
           </Button>
           <Button onClick={interestRateFilterChangeHandler}>
-            {interestRateFilter ? "이자 낮은순" : "이자 높은순"}
+            {interestRateFilter ? "금리 낮은순" : "금리 높은순"}
           </Button>
         </FilterArea>
-
-        {products
-          ? products.map((item) => <Card key={item.id} product={item} />)
-          : "검색결과가 없습니다"}
+        if(product.length)
+        {products.map((item) => (
+          <Card key={item.id} product={item} />
+        ))}
       </div>
 
       <NavBar />
