@@ -20,7 +20,7 @@ const CardContainer = styled.div`
   margin: 2.4rem auto;
   flex-direction: column;
   width: 20rem;
-  height: 9rem;
+  height: 8rem;
   color: #fff;
   background-color: #6B23E0;
   border-radius: 16px;
@@ -58,7 +58,7 @@ function CurationPage() {
   </TitleArea>
   <CardContainer>
     <CardInfoText>신청가능한 대출 상품 종합</CardInfoText>
-    <CardAmountText>{`${totalAmount} 원`}</CardAmountText>
+    <CardAmountText>{`${totalAmount.toLocaleString('ko-KR')} 원`}</CardAmountText>
   </CardContainer>
 
   <div>
