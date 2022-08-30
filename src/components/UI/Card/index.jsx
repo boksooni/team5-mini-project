@@ -15,6 +15,7 @@ function Card({ product }) {
       <S.CardCartBtn>
         <IoMdAddCircle size="1.2rem" color="#6B23E0" />
       </S.CardCartBtn>
+
       <S.CardAgencyText>{product.agency}</S.CardAgencyText>
 
       <S.CardMainWrapper>
