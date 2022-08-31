@@ -41,7 +41,7 @@ const CardInfoText = styled.p`
   margin: 1rem;
 `;
 
-let totalAmount = ['products'].reduce((acc, cur) => {
+let totalAmount = [...DUMMY_DATA].reduce((acc, cur) => {
   return acc + cur.amount
 }, 0)
 
