@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../../components/Header";
+import NavBar from "../../components/NavBar";
 import Card from "../../components/UI/Card";
 import { DUMMY_DATA } from "../../utils/constants";
 import styled from "styled-components";
@@ -11,7 +12,7 @@ const TitleArea = styled.div`
   width: 20rem;
 `;
 const UserName = styled.span`
-  color: #6B23E0;
+  color: ${(props) => props.theme.palette.purple};
 `
 
 const CardContainer = styled.div`
@@ -22,12 +23,9 @@ const CardContainer = styled.div`
   width: 20rem;
   height: 8rem;
   color: #fff;
-  background-color: #6B23E0;
+  background-color: ${(props) => props.theme.palette.purple};
   border-radius: 16px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  &:active {
-    border: red;
-  }
 `;
 const CardAmountText = styled.p`
   font-size: ${(props) => props.theme.CardFontSizes.paragraph};
@@ -69,6 +67,7 @@ function CurationPage() {
       <Card key={item.id} product={item} />
     ))}
   </div>
+  <NavBar />
   </>
   )
 }
