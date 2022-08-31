@@ -7,6 +7,15 @@ import { useLocation } from "react-router";
 function Card({ product, onRemove }) {
   const dispatch = useDispatch();
   const location = useLocation().pathname;
+
+  const amount = product.amount
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  const repayPeriod = product.repayPeriod
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   const CART_URL = "/cart";
 
   const cartItemAddHandler = (product) => {
@@ -14,7 +23,7 @@ function Card({ product, onRemove }) {
   };
 
   return (
-    <S.CardContainer value={product.category}>
+    <S.CardContainer>
       {location !== CART_URL ? (
         <S.CardCartBtn onClick={() => cartItemAddHandler(product)}>
           <IoMdAddCircle size="1.2rem" color="#6B23E0" />
@@ -25,9 +34,16 @@ function Card({ product, onRemove }) {
         </S.CardCartBtn>
       )}
 
-      <S.CardMainTitle>{product.title}</S.CardMainTitle>
-      <S.CardAmountText>{`${product.amount} 원`}</S.CardAmountText>
-      <S.CardInfoText>{product.institution}</S.CardInfoText>
+      <S.CardAgencyText>{product.agency}</S.CardAgencyText>
+
+      <S.CardMainWrapper>
+        <S.CardMainTitle>{product.name}</S.CardMainTitle>
+        <S.CardAmountText>{`${amount} 원`}</S.CardAmountText>
+        <S.CardInfoWrapper>
+          <S.CardInfoText>{`연 ${product.interestRate}%`}</S.CardInfoText>
+          <S.CardInfoText>{`상환기간 ${repayPeriod}일`}</S.CardInfoText>
+        </S.CardInfoWrapper>
+      </S.CardMainWrapper>
     </S.CardContainer>
   );
 }
