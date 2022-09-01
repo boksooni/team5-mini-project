@@ -24,7 +24,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/useredit" element={<UserEdit />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/curtaion" element={<Curation />} />
+          <Route path="/curation" element={<Curation />} />
           <Route path="/allproduct" element={<AllProduct />} />
           <Route path="/promotion" element={<Promotion />} />
           <Route path="/paymentcomplted" element={<PaymentCompleted />} />
@@ -36,9 +36,3 @@ function App() {
 }
 
 export default App;
-
-// 1. HEADER, NAVBAR, 404page, ui-button, ui-gnb, homepage  //수연님
-// 2. login, singup, useredit, user-slice //현재님
-// 3. cart,payment-complete,  ui-card, cart-slice, //예진님
-// 4. all-product, search-product, all-product-slice, searched-product-slice //효근님
-// 5. curation page, promotion page, curation-slice, promotion-slice //화정님
