@@ -27,5 +27,5 @@ const PromotionProductSlice = createSlice({
   }
 })
 
+export default PromotionProductSlice.reducer
 export const getPromotionData = (state) => state.promotion
-export const promotionReducer = PromotionProductSlice.reducer
