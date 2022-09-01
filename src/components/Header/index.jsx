@@ -24,7 +24,11 @@ function Header() {
           Logo</S.HeaderLogo>
         <S.HeaderUl>
           <S.HeaderLi onClick={() => navigate("/cart")}><FiShoppingCart/></S.HeaderLi>
-          <S.HeaderLi onClick={() => toggleGnb()}><GiHamburgerMenu/></S.HeaderLi>
+          <S.HeaderLi>
+            {isOpen 
+            ? <AiOutlineClose  onClick={() => toggleGnb()}/> 
+            :<GiHamburgerMenu  onClick={() => toggleGnb()}/>}
+          </S.HeaderLi>
         </S.HeaderUl>
       </S.HeaderWrap>
     </S.HeaderContainer>
