@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const asynCurationFetch = createAsyncThunk(
+export const asynCurationFetch = createAsyncThunk(
   'curation/asynCurationFetch',
   async () => {
     const response = await axios.get(`URL/products/recos/${'user.id'}`)
@@ -27,7 +27,5 @@ const curationProductSlice = createSlice({
   }
 })
 
-export default curationProductSlice
-export { asynCurationFetch }
+export default curationProductSlice.reducer
 export const getCurationData = (state) => state.curation
-export const curationReducer = curationProductSlice.reducer
