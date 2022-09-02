@@ -27,6 +27,8 @@ function index() {
       </S.NavButton>
     </div>
   </S.NavContainer>;
+
+  return <div>NavBar</div>;
 }
 
 export default index;

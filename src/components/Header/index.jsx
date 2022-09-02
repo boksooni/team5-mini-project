@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {FiShoppingCart} from 'react-icons/fi'
 import {AiOutlineClose} from 'react-icons/ai'
@@ -32,5 +33,10 @@ function Header() {
     {isOpen === true ? <GNB/> : null}
     </nav>
   );
+=======
+
+function index() {
+  return <div>header</div>;
+>>>>>>> 41dee878cf113b920d2298a24ec25fd8cb2d6f32
 }
 export default Header;
