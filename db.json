@@ -6,6 +6,13 @@
       "id": 1,
       "age": "20",
       "job": "STUDENT"
+    },
+    {
+      "email": "asdf@test.com",
+      "password": "$2a$10$z3Aia9q8JJD74HGrjOjsI.9BwaRsJnlCA5LHnA1hdl53MUGJ3swK2",
+      "id": 2,
+      "age": "20",
+      "job": "STUDENT"
     }
   ]
 }
