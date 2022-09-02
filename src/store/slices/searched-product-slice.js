@@ -13,10 +13,19 @@ const searchedProductSlice = createSlice({
   name: "searchedProductSlice",
   initialState: {
     data: [],
+    isLoading: false,
   },
   extraReducers: (builder) => {
+    builder.addCase(getSearchedProduct.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(getSearchedProduct.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.data = action.payload;
+    });
+    builder.addCase(getSearchedProduct.rejected, (state) => {
+      state.isLoading = false;
+      throw new Error("FETCHING ERROR");
     });
   },
 });

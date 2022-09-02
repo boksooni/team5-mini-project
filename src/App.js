@@ -14,11 +14,13 @@ import Promotion from "./pages/product/PromotionPage";
 import PaymentCompleted from "./pages/product/PaymentCompletedPage";
 import NotFound from "./pages/NotFound";
 import LoginLayout from "./components/LoginLayout";
+import Header from "./components/Header";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -40,9 +42,3 @@ function App() {
 }
 
 export default App;
-
-// 1. HEADER, NAVBAR, 404page, ui-button, ui-gnb, homepage  //수연님
-// 2. login, singup, useredit, user-slice //현재님
-// 3. cart,payment-complete,  ui-card, cart-slice, //예진님
-// 4. all-product, search-product, all-product-slice, searched-product-slice //효근님
-// 5. curation page, promotion page, curation-slice, promotion-slice //화정님
