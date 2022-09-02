@@ -3,7 +3,8 @@ import * as S from "./style"
 
 function GNB() {
 
-  return( <S.GnbContainer>
+  return( 
+  <S.GnbContainer>
     <S.EditWrap>
       <p onClick={() => window.open('http://localhost:3000/useredit', '_blank')}>회원정보수정</p>
     </S.EditWrap>
@@ -13,5 +14,6 @@ function GNB() {
   </S.GnbContainer>
   );
 }
+
 
 export default GNB;
