@@ -7,6 +7,7 @@ import * as S from './style'
 import {Link, Router, useNavigate, useLocation} from 'react-router-dom'
 import { useState } from "react";
 import GNB from "../UI/GNB";
+
 function Header() {
   const test = () => {
     console.log("Asdf")
@@ -37,10 +38,5 @@ function Header() {
     {isOpen === true ? <GNB/> : null}
     </nav>
   );
-=======
 
-function index() {
-  return <div>header</div>;
->>>>>>> 41dee878cf113b920d2298a24ec25fd8cb2d6f32
-}
 export default Header;
