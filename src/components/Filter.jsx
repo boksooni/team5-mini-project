@@ -89,44 +89,66 @@ function Filter() {
       amountFilter
         ? dispatch(
             shownProductActions.updateShownSearchedProduct(
-              shownSearchedProduct.sort((a, b) => b.amount - a.amount)
+              [...shownSearchedProduct].sort((a, b) => b.amount - a.amount)
             )
           )
         : dispatch(
             shownProductActions.updateShownSearchedProduct(
-              shownSearchedProduct.sort((a, b) => a.amount - b.amount)
+              [...shownSearchedProduct].sort((a, b) => a.amount - b.amount)
             )
           );
     } else {
       amountFilter
         ? dispatch(
             shownProductActions.updateShownAllProduct(
-              shownAllProduct.sort((a, b) => b.amount - a.amount)
+              [...shownAllProduct].sort((a, b) => b.amount - a.amount)
             )
           )
         : dispatch(
             shownProductActions.updateShownAllProduct(
-              shownAllProduct.sort((a, b) => a.amount - b.amount)
+              [...shownAllProduct].sort((a, b) => a.amount - b.amount)
             )
           );
     }
   };
 
-  // const interestRateFilterChangeHandler = (e) => {
-  //   e.preventDefault();
-  //   setInterestRateFilter(!interestRateFilter);
-  //   interestRateFilter
-  //     ? dispatch(
-  //         shownProductActions.updateShownProduct(
-  //           shownProduct.sort((a, b) => b.interestRate - a.interestRate)
-  //         )
-  //       )
-  //     : dispatch(
-  //         shownProductActions.updateShownProduct(
-  //           shownProduct.sort((a, b) => a.interestRate - b.interestRate)
-  //         )
-  //       );
-  // };
+  const interestRateFilterChangeHandler = (e) => {
+    e.preventDefault();
+    setInterestRateFilter(!interestRateFilter);
+    if (isSearched) {
+      interestRateFilter
+        ? dispatch(
+            shownProductActions.updateShownSearchedProduct(
+              [...shownSearchedProduct].sort(
+                (a, b) => b.interestRate - a.interestRate
+              )
+            )
+          )
+        : dispatch(
+            shownProductActions.updateShownSearchedProduct(
+              [...shownSearchedProduct].sort(
+                (a, b) => a.interestRate - b.interestRate
+              )
+            )
+          );
+    } else {
+      interestRateFilter
+        ? dispatch(
+            shownProductActions.updateShownAllProduct(
+              [...shownAllProduct].sort(
+                (a, b) => b.interestRate - a.interestRate
+              )
+            )
+          )
+        : dispatch(
+            shownProductActions.updateShownAllProduct(
+              [...shownAllProduct].sort(
+                (a, b) => a.interestRate - b.interestRate
+              )
+            )
+          );
+    }
+  };
 
   return (
     <FilterArea>
@@ -149,9 +171,9 @@ function Filter() {
       <Button onClick={amountFilterChangeHandler}>
         {amountFilter ? "금액 높은순" : "금액 낮은순"}
       </Button>
-      {/* <Button onClick={interestRateFilterChangeHandler}>
+      <Button onClick={interestRateFilterChangeHandler}>
         {interestRateFilter ? "금리 높은순" : "금리 낮은순"}
-      </Button> */}
+      </Button>
     </FilterArea>
   );
 }
