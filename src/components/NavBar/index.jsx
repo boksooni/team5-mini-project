@@ -5,10 +5,6 @@ import * as S from './style';
 import { useNavigate } from 'react-router-dom'
 
 function index() {
-  const test = () => {
-    console.log("zdfsa")
-  }
-
   const navigate = useNavigate();
 
   return <S.NavContainer>
