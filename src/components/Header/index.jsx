@@ -6,6 +6,7 @@ import * as S from './style'
 import {Link, Router, useNavigate, useLocation} from 'react-router-dom'
 import { useState } from "react";
 import GNB from "../UI/GNB";
+
 function Header() {
   const test = () => {
     console.log("Asdf")
@@ -24,7 +25,13 @@ function Header() {
           Logo</S.HeaderLogo>
         <S.HeaderUl>
           <S.HeaderLi onClick={() => navigate("/cart")}><FiShoppingCart/></S.HeaderLi>
+
           <S.HeaderLi onClick={() => toggleGnb()}><GiHamburgerMenu/></S.HeaderLi>
+          <S.HeaderLi>
+            {isOpen 
+            ? <AiOutlineClose  onClick={() => toggleGnb()}/> 
+            :<GiHamburgerMenu  onClick={() => toggleGnb()}/>}
+          </S.HeaderLi>
         </S.HeaderUl>
       </S.HeaderWrap>
     </S.HeaderContainer>
@@ -32,5 +39,7 @@ function Header() {
     {isOpen === true ? <GNB/> : null}
     </nav>
   );
+
   }
+  
 export default Header;
