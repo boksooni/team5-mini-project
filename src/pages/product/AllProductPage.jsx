@@ -14,8 +14,6 @@ import { DUMMY_DATA } from "../../utils/constants";
 import { shownProductActions } from "../../store/slices/shown-product-slice";
 
 const TitleArea = styled.div`
-  left: 0;
-  right: 0;
   margin: 0 auto;
   width: 20rem;
   font-size: 18px;
