@@ -14,6 +14,7 @@ import Promotion from "./pages/product/PromotionPage";
 import PaymentCompleted from "./pages/product/PaymentCompletedPage";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
