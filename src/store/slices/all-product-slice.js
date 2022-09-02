@@ -17,10 +17,19 @@ const allProductSlice = createSlice({
   name: "allProductSlice",
   initialState: {
     data: [],
+    isLoading: false,
   },
   extraReducers: (builder) => {
+    builder.addCase(getAllProduct.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(getAllProduct.fulfilled, (state, action) => {
+      state.isLoading = false;
       state.data = action.payload;
+    });
+    builder.addCase(getAllProduct.rejected, (state) => {
+      state.isLoading = false;
+      throw new Error("FETCHING ERROR");
     });
   },
 });
