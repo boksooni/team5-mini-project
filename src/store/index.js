@@ -4,7 +4,10 @@ import searchedProductSlice from "./slices/searched-product-slice";
 import usersReducer from "./slices/user-slice";
 import cartReducer from "./slices/cart-slice";
 import curationReducer from "./slices/curation-product-slice";
+
 import shownProductSlice from "./slices/shown-product-slice";
+
+import promotionReducer from "./slices/promotion-product-slice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +17,7 @@ const store = configureStore({
     users: usersReducer,
     cart: cartReducer,
     curation: curationReducer,
+    promotion: promotionReducer,
   },
 });
 
