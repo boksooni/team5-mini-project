@@ -16,9 +16,10 @@ function Header() {
   // 햄버거 토글
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleGnb = (e) => {
+  const toggleGnb = () => {
     setIsOpen((isOpen) => !isOpen);
   };
+
   return (
     <nav>
       <S.HeaderContainer>
@@ -49,8 +50,8 @@ function Header() {
           </S.HeaderUl>
         </S.HeaderWrap>
       </S.HeaderContainer>
-      {/* 햄버거 토글 */}
-      {isOpen === true ? <GNB /> : null}
+
+      {isOpen === true ? <GNB toggleGnb={toggleGnb} /> : null}
     </nav>
   );
 }

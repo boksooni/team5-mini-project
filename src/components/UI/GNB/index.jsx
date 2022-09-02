@@ -1,19 +1,26 @@
 import React from "react";
-import * as S from "./style"
+import * as S from "./style";
+import { useNavigate } from "react-router-dom";
 
-function GNB() {
-
-  return( 
-  <S.GnbContainer>
-    <S.EditWrap>
-      <p onClick={() => window.open('http://localhost:3000/useredit', '_blank')}>회원정보수정</p>
-    </S.EditWrap>
-    <S.LogoutWrapper>
-      <p>로그아웃</p>
-    </S.LogoutWrapper>
-  </S.GnbContainer>
+function GNB(props) {
+  const navigate = useNavigate();
+  return (
+    <S.GnbContainer>
+      <S.EditWrap>
+        <p
+          onClick={() => {
+            navigate("/useredit");
+            props.toggleGnb();
+          }}
+        >
+          회원정보수정
+        </p>
+      </S.EditWrap>
+      <S.LogoutWrapper>
+        <S.LogoutBtn>로그아웃</S.LogoutBtn>
+      </S.LogoutWrapper>
+    </S.GnbContainer>
   );
 }
-
 
 export default GNB;
