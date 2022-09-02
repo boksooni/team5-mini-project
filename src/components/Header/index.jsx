@@ -1,5 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {FiShoppingCart} from 'react-icons/fi'
 import {AiOutlineClose} from 'react-icons/ai'
@@ -26,6 +25,8 @@ function Header() {
           Logo</S.HeaderLogo>
         <S.HeaderUl>
           <S.HeaderLi onClick={() => navigate("/cart")}><FiShoppingCart/></S.HeaderLi>
+
+          <S.HeaderLi onClick={() => toggleGnb()}><GiHamburgerMenu/></S.HeaderLi>
           <S.HeaderLi>
             {isOpen 
             ? <AiOutlineClose  onClick={() => toggleGnb()}/> 
@@ -39,4 +40,6 @@ function Header() {
     </nav>
   );
 
+  }
+  
 export default Header;
