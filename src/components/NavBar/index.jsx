@@ -4,10 +4,11 @@ import {BsCreditCardFill} from "react-icons/bs";
 import * as S from './style';
 import { useNavigate } from 'react-router-dom'
 
-function index() {
+function NavBar() {
   const navigate = useNavigate();
 
-  return <S.NavContainer>
+  return(
+    <S.NavContainer>
     <div>
       <S.NavButton onClick={() => navigate("/curation")}>
         <S.NavIcon><GiWallet size={45}/></S.NavIcon>
@@ -26,9 +27,8 @@ function index() {
         프로모션
       </S.NavButton>
     </div>
-  </S.NavContainer>;
-
-  return <div>NavBar</div>;
+   </S.NavContainer>
+);
 }
 
-export default index;
+export default NavBar;
