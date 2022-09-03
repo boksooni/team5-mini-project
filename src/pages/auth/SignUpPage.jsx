@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSignUp, doSingUp } from '../../store/slices/user-slice';
+// import { useSignUp, doSingUp } from '../../store/slices/user-slice';
+import { useUsersContainer, doSingUp, doPost } from '../../store/slices/user-slice';
 import {useCookies} from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import DropDown from '../../components/DropDown'
@@ -9,9 +10,13 @@ import * as S from './style'
 function SignUpPage() {
   const [AgedropdownVisibility, setAgeDropdownVisibility] = React.useState(false);
   const [JobdropdownVisibility, setJobDropdownVisibility] = React.useState(false);
-  const { dispatch, posts } = useSignUp()
+  const [errorMessage, setErrorMessage] = useState({errorMessage: ""})
+  // const { dispatch, posts } = useSignUp()
+  const { dispatch, posts, error } = useUsersContainer()
   const [cookies, setCookie, removeCookie] = useCookies()
   const navigate = useNavigate()
+
+  console.log(posts)
 
   const AgeList = [20, 30, 40, 50, 60]
   const JobList = [
@@ -31,7 +36,12 @@ function SignUpPage() {
     }
   }, [cookies["access-token"]])
 
+  useEffect(() => {
+    Boolean(error) && setErrorMessage({errorMessage: error?.errorMessage})
+  }, [error?.errorMessage])
+
   const [userInput, setUserInput] = useState({id:'', password:'', age:'', job:''})
+  let pageName = useRef("signup")
   let userAge = useRef('나이')
   let jobName = useRef('직업')
 
@@ -50,10 +60,21 @@ function SignUpPage() {
     jobName.current = value
   }
 
-  console.log(userInput)
-
   const SingUp = () => {
-    dispatch(doSingUp(userInput))
+    const userData = [userInput, pageName.current]
+    dispatch(doPost(userData))
+  }
+
+  if (errorMessage.errorMessage === "Email and password are required") {
+    setErrorMessage({errorMessage: "이메일과 비밀번호가 필요합니다"})
+  }
+
+  if (errorMessage.errorMessage === "Email format is invalid") {
+    setErrorMessage({errorMessage: "이메일과 비밀번호가 필요합니다"})
+  }
+
+  if (errorMessage.errorMessage === "Email already exists") {
+    setErrorMessage({errorMessage: "이메일이 이미 존재합니다"})
   }
 
   return (
@@ -116,6 +137,7 @@ function SignUpPage() {
               }
           </S.Ul>
       </DropDown>
+      <p>{errorMessage.errorMessage}</p>
       <S.SignUpBtn onClick={SingUp}>회원가입</S.SignUpBtn>
     </S.Container>
   )

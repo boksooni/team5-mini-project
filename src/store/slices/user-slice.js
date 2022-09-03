@@ -1,28 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+// import { act } from 'react-dom/test-utils';
 import { useDispatch, useSelector } from 'react-redux';
 
-// createAsyncThunk는 비동기 작업을 처리하는 엑션을 만들어 준다.
-// 회원가입
-export const doSingUp = createAsyncThunk(
+// 로그인 엑션
+export const doPost = createAsyncThunk(
   'posts/getPosts', // 엑션 타입
-  async (userInput) => {
+  async (userData) => {
+    const [ userInput, pageName ] = userData
     try {
-        const response = await axios.post('http://localhost:8000/signup', userInput)
-        return response.data
+      const response = await axios.post(`http://localhost:8000/${pageName}`, userInput)
+      return response.data
     } catch (e) {
-      console.log(e)
-    }
-})
-
-export const doLogIn = createAsyncThunk(
-  'posts/getPosts', // 엑션 타입
-  async (userInput) => {
-    try {
-        const response = await axios.post('http://localhost:8000/login', userInput)
-        return response.data
-    } catch (e) {
-      console.log(e)
+      return { errorMessage: e.response.data }
     }
 })
 
@@ -32,35 +22,43 @@ const initialState = {
   error: null,
 };
 
-// 리듀서 + 엑션
-export const signUpSlice = createSlice({
+// 리듀서
+export const usersSlice = createSlice({
   name: 'users', // 리듀서 이름
   initialState, // 초기값
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doSingUp.pending, (state) => {
+    builder.addCase(doPost.pending, (state, action) => {
       state.loading = 'pending';
     });
-    builder.addCase(doSingUp.fulfilled, (state, action) => {
+    builder.addCase(doPost.fulfilled, (state, action) => {
       state.loading = 'succeeded';
-      state.posts = action.payload;
+      if (action.payload.accessToken) {
+        console.log("토큰")
+        state.posts = action.payload;
+      }
+      if (action.payload.errorMessage) {
+        state.error = action.payload;
+      }
     });
-    builder.addCase(doSingUp.rejected, (state) => {
+    builder.addCase(doPost.rejected, (state) => {
       state.loading = 'failed';
     });
   },
 });
 
-// 컨테이너
-export const useSignUp = () => {
+// 회원가입 컨테이너
+export const useUsersContainer = () => {
   const posts =  useSelector((state) => state.users.posts)
+  const error =  useSelector((state) => state.users.error)
   const dispatch = useDispatch();
 
   return {
     posts,
+    error,
     dispatch,
   };
 }
 
 // 리듀서 내보내기
-export default signUpSlice.reducer;
+export default usersSlice.reducer;
