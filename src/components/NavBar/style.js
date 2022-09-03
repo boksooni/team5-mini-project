@@ -35,3 +35,4 @@ export const NavIcon = styled.div`
         color: #6B23E0;
     }
 `
+
