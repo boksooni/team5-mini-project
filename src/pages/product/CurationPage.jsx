@@ -67,7 +67,6 @@ function CurationPage() {
           <Card key={item.id} product={item} />
         ))}
       </div>
-      <NavBar />
     </>
   );
 }
