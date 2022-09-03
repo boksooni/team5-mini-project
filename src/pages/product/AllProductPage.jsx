@@ -48,7 +48,7 @@ function AllProductPage() {
 
   useEffect(() => {
     dispatch(getAllProduct());
-    dispatch(shownProductActions.updateShownAllProduct(DUMMY_DATA));
+    dispatch(shownProductActions.updateShownAllProduct(allProducts));
   }, []);
 
   return (
