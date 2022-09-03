@@ -14,14 +14,12 @@ import Promotion from "./pages/product/PromotionPage";
 import PaymentCompleted from "./pages/product/PaymentCompletedPage";
 import NotFound from "./pages/NotFound";
 import LoginLayout from "./components/LoginLayout";
-import Header from "./components/Header";
 import StyleLayout from "./components/UI/StyleLayout";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
         <Routes>
           <Route element={<StyleLayout />}>
             <Route path="/" element={<Home />} />
