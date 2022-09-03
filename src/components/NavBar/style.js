@@ -17,9 +17,21 @@ export const NavButton = styled.div`
     align-items: stretch;
     flex-direction: column;
     display: flex;
-    color: green;
-
+    color: #828282;
+    &:hover {
+        color: #6B23E0;
+    }
+  &.active {
+        color: #6B23E0;
+    }
 `
 export const NavIcon = styled.div`
-    color: green;
+    margin: auto;
+    color: #969696;
+    &:hover {
+        color: #6B23E0;
+  }
+  &.active {
+        color: #6B23E0;
+    }
 `
