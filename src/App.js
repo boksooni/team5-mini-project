@@ -15,7 +15,7 @@ import PaymentCompleted from "./pages/product/PaymentCompletedPage";
 import NotFound from "./pages/NotFound";
 import LoginLayout from "./components/LoginLayout";
 import Header from "./components/Header";
-import NavBar from "./components/NavBar";
+import StyleLayout from "./components/UI/StyleLayout";
 
 function App() {
   return (
@@ -23,18 +23,20 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          {/* <Route element={<LoginLayout />}> */}
-          <Route path="/useredit" element={<UserEdit />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/curataion" element={<Curation />} />
-          <Route path="/allproduct" element={<AllProduct />} />
-          <Route path="/promotion" element={<Promotion />} />
-          <Route path="/paymentcomplted" element={<PaymentCompleted />} />
-          {/* </Route> */}
-          <Route path="*" element={<NotFound />} />
+          <Route element={<StyleLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route element={<LoginLayout />}>
+              <Route path="/useredit" element={<UserEdit />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/curation" element={<Curation />} />
+              <Route path="/allproduct" element={<AllProduct />} />
+              <Route path="/promotion" element={<Promotion />} />
+              <Route path="/paymentcomplted" element={<PaymentCompleted />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

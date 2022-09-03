@@ -35,7 +35,6 @@ const StyledButton = styled.button`
     ${(props) =>
     props.middleWidth &&
     css`
-      position: absolute;
       bottom: 20px;
       width: 300px;
       height: 56px;
