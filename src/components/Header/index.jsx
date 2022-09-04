@@ -25,7 +25,7 @@ function Header() {
       <S.HeaderContainer>
         <S.HeaderWrap>
           <S.HeaderLogo onClick={() => navigate("/curation")}>
-            NeedMoney
+            NEEDMONEY
           </S.HeaderLogo>
           <S.HeaderUl>
             <S.HeaderLi onClick={() => navigate("/cart")}>
