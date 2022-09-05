@@ -44,6 +44,19 @@ const StyledButton = styled.button`
       box-shadow: rgb(79 99 210 / 15%);
     `}
 
+    ${(props) =>
+    props.white &&
+    css`
+      background: #fff;
+      bottom: 20px;
+      width: 300px;
+      height: 56px;
+      border-radius: 3rem;
+      font-size: 1.2rem;
+      z-index: 20;
+      box-shadow: rgb(79 99 210 / 15%);
+    `}
+
     // 작은 크기 버튼
     ${(props) =>
     props.smallWidth &&
