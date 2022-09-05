@@ -41,8 +41,8 @@ function AllProductPage() {
 
   useEffect(() => {
     dispatch(getAllProduct());
-    dispatch(shownProductActions.updateShownAllProduct(DUMMY_DATA));
-  }, []);
+    dispatch(shownProductActions.updateShownAllProduct(allProducts));
+  }, [dispatch]);
 
   return (
     <div>
@@ -63,7 +63,7 @@ function AllProductPage() {
         ) : allProductIsLoading ? (
           <Loading />
         ) : shownAllProduct.length === 0 ? (
-          "검색결과가 없습니다"
+          "직업을 선택해주세요"
         ) : (
           shownAllProduct.map((item) => <Card key={item.id} product={item} />)
         )}
