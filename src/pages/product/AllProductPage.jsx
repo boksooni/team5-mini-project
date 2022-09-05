@@ -9,30 +9,23 @@ import Loading from "../../components/UI/Loading";
 
 import { getAllProduct } from "../../store/slices/all-product-slice";
 
-import { DUMMY_DATA } from "../../utils/constants";
-import { shownProductActions } from "../../store/slices/shown-product-slice";
-
 function AllProductPage() {
   const dispatch = useDispatch();
 
   const isSearched = useSelector((state) => {
-    return state.shownProduct.isSearched;
+    return state.searchedProduct.isSearched;
   });
 
-  const allProducts = useSelector((state) => {
-    return state.allProduct.data;
-  });
-
-  const shownAllProduct = useSelector((state) => {
-    return state.shownProduct.allData;
-  });
-
-  const shownSearchedProduct = useSelector((state) => {
-    return state.shownProduct.searchedData;
+  const filteredAllProducts = useSelector((state) => {
+    return state.allProduct.filteredData;
   });
 
   const allProductIsLoading = useSelector((state) => {
     return state.allProduct.isLoding;
+  });
+
+  const filteredSearchedProduct = useSelector((state) => {
+    return state.searchedProduct.filteredData;
   });
 
   const searchedProductIsLoading = useSelector((state) => {
@@ -41,8 +34,7 @@ function AllProductPage() {
 
   useEffect(() => {
     dispatch(getAllProduct());
-    dispatch(shownProductActions.updateShownAllProduct(allProducts));
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>
@@ -55,17 +47,19 @@ function AllProductPage() {
         {isSearched ? (
           searchedProductIsLoading ? (
             <Loading />
-          ) : (
-            shownSearchedProduct.map((item) => (
+          ) : filteredSearchedProduct.length > 0 ? (
+            filteredSearchedProduct.map((item) => (
               <Card key={item.id} product={item} />
             ))
+          ) : (
+            <div> 검색결과가 없습니다 </div>
           )
         ) : allProductIsLoading ? (
           <Loading />
-        ) : shownAllProduct.length === 0 ? (
-          "직업을 선택해주세요"
         ) : (
-          shownAllProduct.map((item) => <Card key={item.id} product={item} />)
+          filteredAllProducts.map((item) => (
+            <Card key={item.id} product={item} />
+          ))
         )}
       </div>
     </div>

@@ -12,8 +12,14 @@ const getAllProduct = createAsyncThunk(
 const allProductSlice = createSlice({
   name: "allProductSlice",
   initialState: {
-    data: [],
+    initialData: [],
+    filteredData: [],
     isLoading: false,
+  },
+  reducers: {
+    updateAllFilteredProduct(state, action) {
+      state.filteredData = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllProduct.pending, (state) => {
@@ -21,7 +27,8 @@ const allProductSlice = createSlice({
     });
     builder.addCase(getAllProduct.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.initialData = action.payload;
+      state.filteredData = action.payload;
     });
     builder.addCase(getAllProduct.rejected, (state) => {
       state.isLoading = false;
@@ -32,3 +39,4 @@ const allProductSlice = createSlice({
 
 export default allProductSlice;
 export { getAllProduct };
+export const allProductActions = allProductSlice.actions;
