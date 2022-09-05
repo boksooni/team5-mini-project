@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 export const NavContainer = styled.div`
     width: 100%;
     height: 104px;
@@ -8,9 +7,7 @@ export const NavContainer = styled.div`
     align-items: center;
     justify-content: space-around;
     border-radius: 20px 20px 0 0;
-    position: fixed;
-    bottom: 0;
-
+    position: relative;
 `
 export const NavButton = styled.div`
     font-size: small;
@@ -36,4 +33,3 @@ export const NavIcon = styled.div`
         color: #6B23E0;
     }
 `
-
