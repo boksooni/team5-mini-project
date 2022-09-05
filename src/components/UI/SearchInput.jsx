@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import theme from "../../styles/theme";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { searchedProductActions } from "../../store/slices/searched-product-slice";
 
 import { getSearchedProduct } from "../../store/slices/searched-product-slice";
-import { shownProductActions } from "../../store/slices/shown-product-slice";
 
 import { GoSearch } from "react-icons/go";
 
@@ -32,15 +32,10 @@ function SearchInput() {
 
   const [inputValue, setInputValue] = useState(null);
 
-  const searchedProducts = useSelector((state) => {
-    return state.searchedProduct.data;
-  });
-
   const searchHandler = (e) => {
     e.preventDefault();
     dispatch(getSearchedProduct(inputValue));
-    dispatch(shownProductActions.updateShownSearchedProduct(searchedProducts));
-    dispatch(shownProductActions.changeIsSearched());
+    dispatch(searchedProductActions.changeIsSearched());
   };
 
   const inputValueHandler = (e) => {

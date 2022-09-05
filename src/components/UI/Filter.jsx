@@ -4,8 +4,8 @@ import theme from "../../styles/theme";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaFilter } from "react-icons/fa";
-import { shownProductActions } from "../../store/slices/shown-product-slice";
-import { DUMMY_DATA } from "../../utils/constants";
+import { searchedProductActions } from "../../store/slices/searched-product-slice";
+import { allProductActions } from "../../store/slices/all-product-slice";
 
 const mainColor = theme.palette.purple;
 
@@ -28,47 +28,45 @@ function Filter() {
   const [interestRateFilter, setInterestRateFilter] = useState(false);
 
   const allProducts = useSelector((state) => {
-    return state.allProduct.data;
+    return state.allProduct.initialData;
+  });
+
+  const filteredAllProducts = useSelector((state) => {
+    return state.allProduct.filteredData;
   });
 
   const searchedProduct = useSelector((state) => {
-    return state.searchedProduct.data;
+    return state.searchedProduct.initialData;
   });
 
-  const shownAllProduct = useSelector((state) => {
-    return state.shownProduct.allData;
-  });
-
-  const shownSearchedProduct = useSelector((state) => {
-    return state.shownProduct.searchedData;
+  const filteredSearchedProduct = useSelector((state) => {
+    return state.searchedProduct.filteredData;
   });
 
   const isSearched = useSelector((state) => {
-    return state.shownProduct.isSearched;
+    return state.searchedProduct.isSearched;
   });
 
   const jobFilterChangeHandler = (e) => {
     if (isSearched) {
       if (e.target.value === "all") {
         dispatch(
-          shownProductActions.updateShownSearchedProduct(searchedProduct)
+          searchedProductActions.updateSearedFilteredProduct(searchedProduct)
         );
       } else {
         dispatch(
-          shownProductActions.updateShownSearchedProduct(
-            shownSearchedProduct.filter(
-              (product) => e.target.value === product.job
-            )
+          searchedProductActions.updateSearedFilteredProduct(
+            searchedProduct.filter((product) => e.target.value === product.job)
           )
         );
       }
     } else {
       if (e.target.value === "all") {
-        dispatch(shownProductActions.updateShownAllProduct(DUMMY_DATA));
+        dispatch(allProductActions.updateAllFilteredProduct(allProducts));
       } else {
         dispatch(
-          shownProductActions.updateShownAllProduct(
-            DUMMY_DATA.filter((product) => e.target.value === product.job)
+          allProductActions.updateAllFilteredProduct(
+            allProducts.filter((product) => e.target.value === product.job)
           )
         );
       }
@@ -81,25 +79,25 @@ function Filter() {
     if (isSearched) {
       amountFilter
         ? dispatch(
-            shownProductActions.updateShownSearchedProduct(
-              [...shownSearchedProduct].sort((a, b) => b.amount - a.amount)
+            searchedProductActions.updateSearedFilteredProduct(
+              [...filteredSearchedProduct].sort((a, b) => b.amount - a.amount)
             )
           )
         : dispatch(
-            shownProductActions.updateShownSearchedProduct(
-              [...shownSearchedProduct].sort((a, b) => a.amount - b.amount)
+            searchedProductActions.updateSearedFilteredProduct(
+              [...filteredSearchedProduct].sort((a, b) => a.amount - b.amount)
             )
           );
     } else {
       amountFilter
         ? dispatch(
-            shownProductActions.updateShownAllProduct(
-              [...shownAllProduct].sort((a, b) => b.amount - a.amount)
+            allProductActions.updateAllFilteredProduct(
+              [...filteredAllProducts].sort((a, b) => b.amount - a.amount)
             )
           )
         : dispatch(
-            shownProductActions.updateShownAllProduct(
-              [...shownAllProduct].sort((a, b) => a.amount - b.amount)
+            allProductActions.updateAllFilteredProduct(
+              [...filteredAllProducts].sort((a, b) => a.amount - b.amount)
             )
           );
     }
@@ -111,15 +109,15 @@ function Filter() {
     if (isSearched) {
       interestRateFilter
         ? dispatch(
-            shownProductActions.updateShownSearchedProduct(
-              [...shownSearchedProduct].sort(
+            searchedProductActions.updateSearedFilteredProduct(
+              [...filteredSearchedProduct].sort(
                 (a, b) => b.interestRate - a.interestRate
               )
             )
           )
         : dispatch(
-            shownProductActions.updateShownSearchedProduct(
-              [...shownSearchedProduct].sort(
+            searchedProductActions.updateSearedFilteredProduct(
+              [...filteredSearchedProduct].sort(
                 (a, b) => a.interestRate - b.interestRate
               )
             )
@@ -127,15 +125,15 @@ function Filter() {
     } else {
       interestRateFilter
         ? dispatch(
-            shownProductActions.updateShownAllProduct(
-              [...shownAllProduct].sort(
+            allProductActions.updateAllFilteredProduct(
+              [...filteredAllProducts].sort(
                 (a, b) => b.interestRate - a.interestRate
               )
             )
           )
         : dispatch(
-            shownProductActions.updateShownAllProduct(
-              [...shownAllProduct].sort(
+            allProductActions.updateAllFilteredProduct(
+              [...filteredAllProducts].sort(
                 (a, b) => a.interestRate - b.interestRate
               )
             )
@@ -155,10 +153,10 @@ function Filter() {
         }}
       >
         <SelectOption value="all">모든 직업</SelectOption>
-        <SelectOption value="직장인">직장인</SelectOption>
-        <SelectOption value="학생">학생</SelectOption>
-        <SelectOption value="프리랜서">프리랜서</SelectOption>
-        <SelectOption value="무직">무직</SelectOption>
+        <SelectOption value="EMPLOYEE">직장인</SelectOption>
+        <SelectOption value="STUDENT">학생</SelectOption>
+        <SelectOption value="FREELANCER">프리랜서</SelectOption>
+        <SelectOption value="UNEMPLOYED">무직</SelectOption>
       </SelectBox>
 
       <Button onClick={amountFilterChangeHandler}>
