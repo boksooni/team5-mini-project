@@ -4,7 +4,7 @@ import axios from "axios";
 export const asynPromotionFetch = createAsyncThunk(
   "promotion/asynPromotionFetch",
   async () => {
-    const response = await axios.get("15.164.76.177:8080/products/promotions");
+    const response = await axios.get("URL");
     return response;
   }
 );
