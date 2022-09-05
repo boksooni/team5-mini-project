@@ -3,21 +3,14 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Card from "../../components/UI/Card";
-import styled from "styled-components";
-import SearchInput from "../../components/SearchInput";
-import Filter from "../../components/Filter";
+import SearchInput from "../../components/UI/SearchInput";
+import Filter from "../../components/UI/Filter";
 import Loading from "../../components/UI/Loading";
 
 import { getAllProduct } from "../../store/slices/all-product-slice";
 
 import { DUMMY_DATA } from "../../utils/constants";
 import { shownProductActions } from "../../store/slices/shown-product-slice";
-
-const TitleArea = styled.div`
-  margin: 0 auto;
-  width: 20rem;
-  font-size: 18px;
-`;
 
 function AllProductPage() {
   const dispatch = useDispatch();
@@ -55,9 +48,9 @@ function AllProductPage() {
     <div>
       <div>
         <SearchInput />
-        <TitleArea>
-          {isSearched ? <h2>검색상품</h2> : <h2>전체상품</h2>}
-        </TitleArea>
+
+        {isSearched ? <h2>검색상품</h2> : <h2>전체상품</h2>}
+
         <Filter />
         {isSearched ? (
           searchedProductIsLoading ? (
