@@ -11,14 +11,14 @@ function NavBar() {
     return(
     <S.NavContainer>
     <div>
-      {location === "/login" 
+      {location === "/curation" 
       ? ( 
-      <S.NavButton onClick={ () => navigate("/login")} color="#6B23E0"> 
+      <S.NavButton onClick={ () => navigate("/curation")} color="#6B23E0"> 
         <S.NavIcon color="#6B23E0"><GiWallet size={45} /></S.NavIcon>
         맞춤추천  
       </S.NavButton> ) 
       : (
-        <S.NavButton onClick={ () => navigate("/login") }> 
+        <S.NavButton onClick={ () => navigate("/curation") }> 
           <S.NavIcon><GiWallet size={45} /></S.NavIcon>
           맞춤추천
         </S.NavButton>)
