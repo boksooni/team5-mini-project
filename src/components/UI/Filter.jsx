@@ -1,20 +1,13 @@
 import styled from "styled-components";
-import Button from "./UI/Button";
-import theme from "../styles/theme";
+import Button from "./Button";
+import theme from "../../styles/theme";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaFilter } from "react-icons/fa";
-import { shownProductActions } from "../store/slices/shown-product-slice";
-import { DUMMY_DATA } from "../utils/constants";
+import { shownProductActions } from "../../store/slices/shown-product-slice";
+import { DUMMY_DATA } from "../../utils/constants";
 
 const mainColor = theme.palette.purple;
-
-const FilterArea = styled.form`
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 20rem;
-`;
 
 const SelectBox = styled.select`
   border-radius: 4px;
@@ -151,7 +144,7 @@ function Filter() {
   };
 
   return (
-    <FilterArea>
+    <div>
       <FaFilter size=".9rem" />
       <span style={{ margin: "2px" }}>필터</span>
 
@@ -174,7 +167,7 @@ function Filter() {
       <Button onClick={interestRateFilterChangeHandler}>
         {interestRateFilter ? "금리 높은순" : "금리 낮은순"}
       </Button>
-    </FilterArea>
+    </div>
   );
 }
 
